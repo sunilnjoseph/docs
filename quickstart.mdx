@@ -3,45 +3,70 @@ title: "Quickstart: build your first roster"
 description: "Set up your PlanMyRounds organisation, add staff and shift templates, then build and publish your first clinical roster in a few guided steps."
 ---
 
-Describe how someone begins using your product. What is the first thing they need to do? Are there any prerequisites?
-
-A quickstart should take someone from zero to using your product. They'll get a quick win and a sense of what they can accomplish.
+This guide takes you from a fresh PlanMyRounds account to your first published roster. Plan on about **10 minutes**.
 
 ## Prerequisites
 
-Before you begin, you must have:
+- A PlanMyRounds account ([sign up](https://planmyrounds.com/))
+- Admin access to your organisation
+- A list of staff (names \+ email addresses) you want to roster
+- A rough idea of your shift pattern (e.g. _Day SHO 08:00–20:00, Night Reg 20:00–08:00_)
 
-- Requirement one (for example, Node.js 18+, a free account, an API key)
-- Requirement two (for example, a compatible device, a compatible browser, a compatible operating system)
-
-## Get started
+## Steps
 
 <Steps>
-  <Step title="Install">
-    Describe how to install your product or sign up.
+  <Step title="Set up your organisation">
+    From the dashboard, go to **Organisation Settings** and confirm:
 
-    ```bash
-    npm install your-package
-    ```
+    - Organisation name and time zone
+    - Working week (Mon–Sun) and default working hours
+    - Minimum rest hours between shifts
   </Step>
-  <Step title="Configure">
-    Describe any setup or configuration needed before first use.
+  <Step title="Invite your staff">
+    Go to **User Management → Invite users** and add staff by email. Assign each one a **role** (e.g. SHO, Registrar, Consultant) — roles control which shifts they're eligible for.
 
-    ```bash
-    your-cli init
-    ```
+    <Tip>
+      Bulk-invite via CSV if you have more than 10 users.
+    </Tip>
   </Step>
-  <Step title="Run it">
-    Show the first thing a user does to see it working.
+  <Step title="Create your shift templates">
+    Go to **Organisation Settings → Shift templates** and add the shifts your team runs regularly.
 
-    ```bash
-    your-cli start
-    ```
+    For each template, set:
+
+    - Code and name (e.g. `D-SHO`, _Day SHO_)
+    - Start and end times
+    - Required role
+    - Location and break
+
+    See [Shift templates](/shifts/shift-templates) for full details.
+  </Step>
+  <Step title="Build your first roster">
+    Go to **Rosters → New roster**. Pick a date range (start with one week) and the team it covers.
+
+    In the roster grid, drag templates from the right-hand panel onto the person/date cells. Use **Auto-assign** to fill multiple shifts at once.
+
+    See [Creating shifts](/shifts/creating-shifts) and [Assigning staff](/shifts/assigning-staff).
+  </Step>
+  <Step title="Review and publish">
+    Click **Review** to check for unassigned shifts, conflicts, and rest-rule breaches. Resolve issues, then click **Publish**.
+
+    Staff are notified by email and in-app. See [Publishing and notifications](/shifts/publishing-and-notifications).
   </Step>
 </Steps>
 
-<Tip>
-  Give people a way to get help. This could be a link to a support page, a chat with a customer support agent, or a forum for your product.
+## What's next
 
-  Example: Need help? Reach out to us at [support@yourcompany.com](mailto:support@yourcompany.com).
+<CardGroup cols={2}>
+  <Card title="Handle swaps and cover" icon="arrows-rotate" href="/shifts/swaps-and-cover">
+    Let staff trade shifts after publication.
+  </Card>
+
+  <Card title="Shifts overview" icon="circle-info" href="/shifts/overview">
+    Deep-dive into the shifts module.
+  </Card>
+</CardGroup>
+
+<Tip>
+  Need help? Email [support@planmyrounds.com](mailto:support@planmyrounds.com).
 </Tip>
