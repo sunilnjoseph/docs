@@ -1,0 +1,48 @@
+---
+title: "Roster and shift statuses"
+description: "A reference for every status you'll see on rosters, doctors, and the Duty Plans list."
+icon: "signal"
+---
+
+This page is a quick reference for the statuses you'll encounter while working with rosters and team profiles.
+
+## Roster statuses
+
+These statuses appear on the **Duty Plans** list and on individual roster pages.
+
+| Status | Colour | What it means |
+| --- | --- | --- |
+| **Creating** | Amber | The scheduling engine is running. Wait for it to finish before opening the roster. |
+| **Draft** | Grey | Generation is complete. The roster is ready for review but not yet visible to the team. |
+| **Published** | Blue | The roster is live. All team members can view it. The public share link is active. |
+| **Archived** | Grey | The roster has been retired. Still accessible for reference but no longer the active schedule. |
+| **Failed** | Red | The engine could not produce a valid schedule. Open the roster to see the reason and retry. |
+
+## Doctor statuses
+
+Every doctor profile is either **Active** or **Inactive**.
+
+| Status | What it means |
+| --- | --- |
+| **Active** | The doctor can be included in rosters and leave planning. |
+| **Inactive** | The doctor is excluded from new roster generation. Their historical data is preserved. |
+
+<Note>
+  A doctor becomes **Inactive** automatically when the member account they're linked to is deactivated by an admin.
+</Note>
+
+## Leave statuses
+
+Leave entries have their own set of statuses. See the [Leave management overview](/leave/overview#leave-statuses) for the full list.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="How rosters work" icon="circle-info" href="/rosters/overview">
+    The lifecycle and key concepts behind rosters in PlanMyRounds.
+  </Card>
+
+  <Card title="Leave management" icon="plane-departure" href="/leave/overview">
+    Statuses and workflow for leave requests.
+  </Card>
+</CardGroup>

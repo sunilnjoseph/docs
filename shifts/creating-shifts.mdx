@@ -4,92 +4,67 @@ description: "Add one-off, recurring, or bulk-imported shifts to a roster from t
 icon: "plus"
 ---
 
-There are three ways to create a shift in PlanMyRounds: from a **template**, from **scratch**, or by **bulk import**.
-
-## Create from a template
-
-The fastest way — recommended for any shift you run regularly.
-
-<Steps>
-  <Step title="Open the roster">
-    Go to **Rosters → \[your roster\] → Edit**.
-  </Step>
-  <Step title="Pick a template">
-    From the right-hand panel, drag a template (e.g. _Day SHO 08:00–20:00_) onto a person/date cell.
-  </Step>
-  <Step title="Confirm">
-    The shift inherits the template's times, role, and breaks. Edit any field inline if needed.
-  </Step>
-</Steps>
-
-## Create from scratch
-
-Use this for one-off cover, ad-hoc shifts, or training days.
-
-1. In the roster, click an empty cell or hit **\+ Add shift**.
-2. Fill in:
-   - **Start / end time** (crossing midnight is supported)
-   - **Role** (e.g. SHO, Registrar, Consultant)
-   - **Location** (ward, site, department)
-   - **Break** (paid / unpaid)
-   - **Notes** (visible to the assignee)
-3. Click **Save**.
+Custom shift templates let you tailor PlanMyRounds to the way your department actually runs. Once a shift is created, it's available to pick when [building any roster](/rosters/creating-a-roster).
 
 <Note>
-  Shifts created from scratch are not linked to a template — future template edits won't propagate to them.
+  Only admins can create or edit shift templates. If you don't see the **Create New Shift** button, your account doesn't have admin access.
 </Note>
 
-## Create recurring shifts
-
-For rotating patterns (e.g. _1 in 4 weekends_):
+## Create a custom shift
 
 <Steps>
-  <Step title="Open the shift editor">
-    Click **\+ Add shift** and toggle **Recurring**.
+  <Step title="Open Shifts">
+    Go to **Shifts** in the sidebar.
   </Step>
-  <Step title="Set the pattern">
-    Choose frequency (daily, weekly, custom n-week cycle) and the start/end of the recurrence.
+  <Step title="Start a new shift">
+    Select **Create New Shift** in the top right.
   </Step>
-  <Step title="Choose handling for conflicts">
-    Decide whether to **skip** dates that overlap leave/existing shifts, or **flag** them for review.
+  <Step title="Name it">
+    Enter a **Shift Name** your team will recognise \\u2014 for example, _Morning OPD_ or _Night ICU Cover_.
   </Step>
-  <Step title="Generate">
-    PlanMyRounds creates one shift per occurrence. You can edit or delete individual instances later.
+  <Step title="Set the times">
+    Pick a **Start Time** and **End Time**. The duration is calculated automatically. Overnight shifts that cross midnight are handled correctly.
+  </Step>
+  <Step title="Set the headcount">
+    Enter the **Required Doctors** \\u2014 the minimum number of doctors needed to cover this shift each day it appears.
+  </Step>
+  <Step title="Set the seniority floor (optional)">
+    Enter the **Minimum Seniors Required** \\u2014 how many of those doctors must be at senior level.
+  </Step>
+  <Step title="Save">
+    Select **Create Shift**. The new shift is immediately available the next time you create or edit a roster.
   </Step>
 </Steps>
 
-## Bulk import
+## Recovery time settings
 
-For moving an existing rota in from a spreadsheet:
+By default, each shift uses the recovery rules configured at the **roster** level (set in [Step 4 of the creation wizard](/rosters/creating-a-roster#step-4-scheduling-rules)). You only need custom recovery times if this specific shift needs longer rest than your organisation's standard \\u2014 for example, a long night shift that warrants extra recovery.
 
-1. Go to **Rosters → Import**.
-2. Download the CSV template.
-3. Fill in `date`, `start_time`, `end_time`, `role`, `assignee_email`, `location`, `template_code` (optional).
-4. Upload — PlanMyRounds will validate rows and show a preview before committing.
+Toggle on **Use Custom Recovery Times** to override:
+
+| Setting | What it does | Minimum |
+| --- | --- | --- |
+| **After 1 Shift** | Minimum rest hours required after working this shift once. | 8 hours |
+| **After 2 Consecutive Shifts** | Minimum rest hours required after two back-to-back shifts. | 16 hours |
 
 <Warning>
-  Imports respect leave and rest rules. Conflicting rows are listed for manual resolution; they are **not** silently dropped.
+  Setting custom recovery times significantly higher than the defaults can reduce scheduling flexibility \\u2014 the engine has fewer valid assignments to choose from. A warning appears if your values are more than 50% above the standard minimums.
 </Warning>
 
-## Validation rules
+## Editing or removing a shift later
 
-When you save a shift, PlanMyRounds checks:
+You can change a custom shift any time from its detail page \\u2014 see [Viewing your shifts](/shifts/viewing-shifts#edit-a-shift). Default shifts can't be edited or deleted.
 
-- The assignee has no overlapping shift on that date.
-- The assignee has no approved leave covering the shift.
-- Minimum rest between shifts (configured in **Organisation Settings**) is respected.
-- The assignee holds the role required by the shift.
-
-Failures appear inline and must be resolved or overridden (with reason) before saving.
+Changes take effect for **future roster generation**. Already-published rosters keep the shift definitions they were built with.
 
 ## Next steps
 
 <CardGroup cols={2}>
-  <Card title="Assign staff" icon="user-plus" href="/shifts/assigning-staff">
-    Allocate or reassign created shifts.
+  <Card title="View your shifts" icon="list" href="/shifts/viewing-shifts">
+    Find, search, and inspect everything in your shift library.
   </Card>
 
-  <Card title="Shift templates" icon="layer-group" href="/shifts/shift-templates">
-    Build the templates you'll create shifts from.
+  <Card title="Create a roster" icon="wand-magic-sparkles" href="/rosters/creating-a-roster">
+    Use your new shift in a duty plan.
   </Card>
 </CardGroup>

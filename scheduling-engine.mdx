@@ -1,0 +1,272 @@
+---
+title: "How the PlanMyRounds scheduling engine works"
+sidebarTitle: "Scheduling engine"
+description: "A full reference for every input, constraint, fairness rule, and trade-off the PlanMyRounds scheduling engine reasons about when generating a duty roster."
+icon: "microchip"
+tag: "REFERENCE"
+---
+
+Rostering looks simple until it isn't. Real rosters have to balance staffing minimums, seniority, leave, fairness, fatigue, and a long tail of doctor preferences — often across dozens of people and hundreds of shifts.
+
+This page is a complete, no-shortcuts reference of every input, rule, and weighted trade-off the PlanMyRounds engine considers when it builds a roster. It exists so you know exactly what you're trusting the engine with.
+
+<Note>
+  This is a reference page. If you're new to PlanMyRounds, start with [How rosters work](/rosters/overview) and [Creating a roster](/rosters/creating-a-roster) first.
+</Note>
+
+## At a glance
+
+<CardGroup cols={2}>
+  <Card title="Two-phase solver" icon="layer-group">
+    A fast greedy pass seeds the schedule, then an OR-Tools constraint-programming solver refines it against a weighted objective.
+  </Card>
+
+  <Card title="Hard vs. soft constraints" icon="shield-halved">
+    Hard constraints are never violated. Soft constraints are optimised — the engine bends them only when there's no valid alternative.
+  </Card>
+
+  <Card title="Fresh data every run" icon="arrows-rotate">
+    Doctor profiles, approved leave, and shift definitions are re-read on every generation so the output reflects the latest state.
+  </Card>
+
+  <Card title="Full violation report" icon="clipboard-list">
+    Every run produces a structured report — hard violations block publishing; soft violations surface as warnings.
+  </Card>
+</CardGroup>
+
+---
+
+## Roster inputs
+
+The top-level fields required to start a roster run.
+
+| Parameter | Required | Description |
+| --- | --- | --- |
+| **Roster Name** | Yes | Display name for the duty plan. |
+| **Department** | Optional | Department scope for this roster. |
+| **Start Date** | Yes | First day of the duty period (inclusive). |
+| **End Date** | Yes | Last day of the duty period (inclusive). |
+| **Selected Doctors** | Yes | The pool of doctors to schedule from. |
+| **Shift Configuration** | Yes | The shift types that need to be filled each day. |
+| **Scheduling Rules** | Yes | Constraint and fairness settings. |
+| **Engine Type** | Optional | The variant of the engine to use. Defaults to the general engine; specialised variants are available for ICU rotations. |
+
+---
+
+## Doctor parameters
+
+Every doctor in the roster pool carries the following fields. The engine reads them on every run — keeping doctor profiles up to date is the single biggest lever for better rosters.
+
+### Identity and eligibility
+
+| Parameter | Required | Description |
+| --- | --- | --- |
+| **Seniority Level** | Yes | `senior` or `junior`. Used to enforce minimum senior counts per shift. |
+| **Status** | Yes | Only `active` doctors are eligible for scheduling. |
+| **Joining Date** | Yes | Used to calculate the new-doctor grace period (see [Soft constraints](#soft-constraints-and-fairness-optimisation)). |
+| **Department** | Yes | Department affiliation. |
+| **Pod / Group** | Optional | Sub-group used for cohort-based scheduling and reporting. |
+| **Role** | Optional | `Non-Trainee` or `Trainee`. |
+
+### Leave and availability constraints
+
+The engine pulls a fresh snapshot of [leave data](/leave/overview) on every run.
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| **Approved Leaves** | Hard constraint | Dates and shifts where the doctor is fully blocked. Only `approved` status leaves are applied. |
+| **Excluded Shifts** | Soft constraint | Specific date \+ shift combinations the doctor wants to avoid. Penalised, not blocked. |
+| **Excluded Shift Types** | Soft constraint | Shift names (for example, _Night_) the doctor prefers not to work across the entire period. |
+| **Excluded Weekdays** | Soft constraint | Day-of-week \+ shift combinations (for example, _no night shifts on Mondays_). Expanded into date-level exclusions during preprocessing. |
+| **Min Hours Per Month** | Soft constraint | Minimum working hours the doctor should receive in the period. |
+| **Max Hours Per Month** | Soft constraint | Maximum working hours the doctor should receive in the period. |
+
+<Note>
+  Only leaves with **Approved** status create hard blocks. Pending or rejected leaves are ignored by the engine — always [clear the pending queue](/leave/approval-workflow) before generating.
+</Note>
+
+---
+
+## Shift configuration
+
+Every shift type used in the roster is defined by these fields.
+
+| Parameter | Required | Description |
+| --- | --- | --- |
+| **Shift Name** | Yes | Display label (for example, _Day_, _Night_, _Evening_). |
+| **Start Time** | Yes | 24-hour format (HH:MM). |
+| **End Time** | Yes | 24-hour format. Can cross midnight. |
+| **Duration** | Auto-calculated | Derived from start and end time, in decimal hours. |
+| **Required Doctors** | Yes | Total headcount needed to fill this shift each day. |
+| **Min Seniors Required** | Yes | Minimum number of senior doctors within the required headcount. |
+| **Color** | Optional | UI display colour for the calendar view. |
+
+### Weekly shift configuration
+
+When using the weekly engine, shifts can be configured per day of week:
+
+- Monday through Sunday can each carry a different shift list.
+- A separate **Holiday Shifts** set overrides the day-of-week config on public holidays.
+- The engine pre-computes metadata: total weekdays, total weekends, coverage percentage, overlaps, and gaps.
+
+---
+
+## Scheduling rules (hard constraints)
+
+Hard constraints are non-negotiable. The engine will not produce an assignment that violates them — if it can't, generation fails.
+
+| Rule | Default | Description |
+| --- | --- | --- |
+| **Max Consecutive Work Days** | 6 | A doctor cannot be assigned more than this many days in a row. |
+| **Min Rest Days Per Week** | 1 | Each doctor must have at least this many rest days per Monday–Sunday week. |
+| **Min Rest Hours Between Shifts** | 8 | Minimum gap required between the end of one shift and the start of the next. |
+| **Allow Back-to-Back Duties** | `true` | Whether consecutive-day assignments are permitted at all. |
+| **Back-to-Back Shift Pair Rules** | None | Specific pairs that are blocked regardless of the global setting (for example, _Night → Day_ on consecutive days). |
+| **No Shift Overlap** | Always on | A doctor cannot be assigned two shifts on the same day. |
+| **Minimum Staffing** | Always on | Every shift must meet `required_doctors`. |
+| **Minimum Senior Staffing** | Always on | Every shift must meet `min_seniors_required`. |
+
+<Warning>
+  Recovery windows (rest hours after 1 or 2\+ consecutive shifts) are defined per shift but are not yet enforced by the current engine. They are reserved for a future release.
+</Warning>
+
+---
+
+## Soft constraints and fairness optimisation
+
+Soft constraints are optimised, not guaranteed. The engine assigns scores and penalties to guide the solver toward the best achievable outcome.
+
+### Fairness weights
+
+The engine uses a weighted objective function. Higher weight means higher priority for the solver.
+
+| Objective | Weight | Description |
+| --- | --- | --- |
+| **Total Workload Balance** | 10 | Distributes total shift count as evenly as possible across all doctors. |
+| **Shift Type Balance** | 3 | Ensures each doctor gets a balanced mix of day and night shifts. |
+| **Preference Adherence** | 1 | Minimises violations of excluded shifts, shift types, and weekday rules. |
+
+### Hours balancing
+
+| Parameter | Default | Description |
+| --- | --- | --- |
+| **Min Hours Per Doctor** | 120 hrs | Floor for the period — doctors below this trigger a soft violation. |
+| **Max Hours Per Doctor** | 300 hrs | Ceiling for the period. |
+| **Target Hours Per Doctor** | 150 hrs | Ideal hours — the engine optimises toward this value. |
+| **Max Hours Difference** | 30 hrs | Maximum allowed variance between the highest- and lowest-loaded doctors. |
+
+### Other soft rules
+
+| Rule | Description |
+| --- | --- |
+| **Prefer Same Shift Type Per Week** | When enabled, tries to assign a doctor to the same shift type across a full week. |
+| **New Doctor Grace Period** | A number of days from `date_of_joining` during which a new doctor is excluded from complex shift types. |
+| **Proportional Fairness** | Doctors with more approved leave receive proportionally fewer shifts — the engine adjusts targets accordingly. |
+| **Fairness Outlier Detection** | Uses a Z-score threshold (\> 2.0) to flag doctors who are unusually over- or under-assigned relative to the group. |
+
+---
+
+## Violation reporting
+
+After every run, the engine produces a structured violation report. Each violation contains:
+
+| Field | Description |
+| --- | --- |
+| **Rule ID** | Machine identifier (for example, `insufficient_doctors`, `minimum_hours_not_met`). |
+| **Type** | `hard` — must be resolved before publishing. `soft` — advisory only. |
+| **Doctor** | The affected doctor's name and ID. |
+| **Shift** | The affected shift name. |
+| **Date** | The affected date. |
+| **Details** | Plain-language description of what was violated and why. |
+
+<Note>
+  **Hard violations block publishing.** Soft violations surface as warnings and do not prevent publishing — you can review and accept them.
+</Note>
+
+---
+
+## Constraint priority order
+
+When the engine encounters conflicts, it resolves them in this exact order.
+
+### Hard (non-negotiable)
+
+<Steps>
+  <Step title="No overlapping shifts">
+    A doctor cannot be assigned two shifts on the same day.
+  </Step>
+  <Step title="Approved leave blocks respected">
+    The doctor is fully blocked on approved leave dates.
+  </Step>
+  <Step title="Minimum shift staffing met">
+    Every shift instance reaches `required_doctors`.
+  </Step>
+  <Step title="Minimum senior staffing met">
+    Every shift instance reaches `min_seniors_required`.
+  </Step>
+  <Step title="Max consecutive work days respected">
+    No doctor exceeds the configured cap.
+  </Step>
+  <Step title="Min rest days per week respected">
+    Each doctor gets the configured rest days per Monday–Sunday week.
+  </Step>
+  <Step title="Back-to-back duty rules respected">
+    Global setting and shift-pair exceptions are both honoured.
+  </Step>
+</Steps>
+
+### Soft (optimised)
+
+1. **Total workload fairness** (weight 10)
+2. **Shift type balance** (weight 3)
+3. **Excluded shift / shift type / weekday preferences** (weight 1)
+4. **New doctor grace period**
+5. **Min / max hours per month**
+6. **Proportional and outlier-based fairness**
+
+---
+
+## Solver behaviour
+
+The engine runs in two phases.
+
+<Steps>
+  <Step title="Greedy phase">
+    Assigns senior doctors first, then fills remaining slots using fairness-based ranking. This produces a valid starting solution quickly.
+  </Step>
+  <Step title="OR-Tools optimisation phase">
+    A constraint-programming solver (Google's OR-Tools) refines the greedy result against the weighted objective function until the time budget is reached or the solver proves optimality.
+  </Step>
+</Steps>
+
+### Solver timeouts
+
+Timeouts scale with the size of the problem.
+
+| Problem size | Timeout |
+| --- | --- |
+| **Small** | 180 seconds |
+| **Medium** (\> 100 variables) | 180 seconds |
+| **Large** (\> 200 variables) | 275 seconds |
+
+---
+
+## Related reading
+
+<CardGroup cols={2}>
+  <Card title="How rosters work" icon="circle-info" href="/rosters/overview">
+    The end-user view of the roster lifecycle.
+  </Card>
+
+  <Card title="Roster constraints" icon="shield-halved" href="/rosters/roster-constraints">
+    A friendlier walkthrough of the work, rest, and fairness rules.
+  </Card>
+
+  <Card title="Creating a roster" icon="wand-magic-sparkles" href="/rosters/creating-a-roster">
+    The four-step wizard that feeds these parameters in.
+  </Card>
+
+  <Card title="Leave management" icon="plane-departure" href="/leave/overview">
+    How approved leave is treated as a hard constraint.
+  </Card>
+</CardGroup>

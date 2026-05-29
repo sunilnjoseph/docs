@@ -1,0 +1,71 @@
+---
+title: "Editing a published roster"
+description: "Make manual changes to a roster after it has been generated or published — reassign doctors, add cover, and handle conflicts."
+icon: "pen-to-square"
+---
+
+Real life happens. A doctor calls in sick, an emergency comes up, or you simply want to swap a couple of assignments around. PlanMyRounds has a manual edit mode for exactly these moments — you don't need to regenerate the whole roster.
+
+## Open the edit view
+
+<Steps>
+  <Step title="Open the roster">
+    Go to **Duty Plans** and open the roster you want to change.
+  </Step>
+  <Step title="Switch to edit mode">
+    Select **Edit** from the action menu (or the **Edit** button if shown).
+  </Step>
+</Steps>
+
+The edit view shows a calendar with **drag-and-drop**. Doctors are listed in a panel on the left — drag any name onto a shift cell to assign them.
+
+## Make changes
+
+| Action | How |
+| --- | --- |
+| **Reassign a doctor** | Drag a doctor from the side panel onto a shift cell on the calendar. |
+| **Remove an assignment** | Select the **X** on an existing assignment chip. |
+| **Add a doctor to the roster** | Use **Add Doctor** to bring in someone who wasn't part of the original plan. |
+
+Every change is tracked in real time. An **undo** button lets you step back through recent edits before saving.
+
+## Watch for conflicts
+
+As you make changes, PlanMyRounds checks for scheduling conflicts — for example:
+
+- Assigning a doctor who has [approved leave](/leave/approval-workflow) on that date.
+- Putting a doctor on back-to-back shifts without the required rest.
+- Going over the maximum consecutive working days.
+
+Conflicts appear in a panel on the right side of the screen, with the date and reason for each one.
+
+<Warning>
+  Conflict checks in edit mode are **advisory**. You can save a roster with flagged conflicts, but doing so may breach your scheduling policy. Review every warning before saving.
+</Warning>
+
+## Save your changes
+
+Select **Save** to confirm. The roster updates immediately.
+
+Changes to a **published** roster do not change its status — it stays visible to the team, with the new assignments shown to everyone, including viewers of the public share link.
+
+## When to edit vs. when to swap
+
+| Situation | Best tool |
+| --- | --- |
+| Doctor is unavailable last minute (sick, emergency) | Admin edit |
+| Two doctors want to trade their own shifts | [Duty swap](/swaps/requesting-a-swap) |
+| Reversing a swap that shouldn't have happened | Admin edit |
+| Adding a doctor who wasn't in the original team | Admin edit |
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="How duty swaps work" icon="arrows-rotate" href="/swaps/overview">
+    Let doctors handle small changes between themselves.
+  </Card>
+
+  <Card title="Roster constraints" icon="shield-halved" href="/rosters/roster-constraints">
+    Understand the rules that conflict warnings are based on.
+  </Card>
+</CardGroup>

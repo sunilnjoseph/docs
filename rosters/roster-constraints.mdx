@@ -1,0 +1,80 @@
+---
+title: "Roster constraints and scheduling rules"
+description: "The work, rest, and fairness rules the PlanMyRounds scheduling engine applies when generating a roster."
+icon: "shield-halved"
+---
+
+When PlanMyRounds generates a roster, it applies a set of **hard** and **soft** rules to produce a schedule that is both valid and fair. Some rules you set yourself in the [creation wizard](/rosters/creating-a-roster); others are applied automatically based on doctor profiles and approved leave.
+
+This page is a reference for every rule the engine respects.
+
+## Hard vs. soft constraints
+
+- **Hard constraints** must be satisfied. If the engine cannot meet them, generation fails.
+- **Soft constraints** are preferences. The engine tries to honour them but may bend them if there's no other way to produce a valid schedule.
+
+## Work and rest rules
+
+Set per roster in **Step 4** of the creation wizard. All of these are **hard** constraints.
+
+| Rule | What it does |
+| --- | --- |
+| **Max consecutive work days** | A doctor cannot work more than this many days in a row without a day off. |
+| **Min rest days per week** | Every doctor must have at least this many days off in every seven-day window. |
+| **Min rest hours between shifts** | Always enforced. No two shifts assigned to one doctor can be closer than this many hours apart. |
+| **Recovery after 1 shift** | Minimum rest required after any single shift. |
+| **Recovery after 2 consecutive shifts** | Applies when **back-to-back duties** are enabled. A longer rest is required after two shifts in a row. |
+
+## Approved leave
+
+[Approved leave](/leave/approval-workflow) entries are **hard** constraints. The engine will never assign a doctor to a shift on a date they have approved leave for.
+
+[Shifts to avoid](/leave/applying-for-leave#mark-shifts-to-avoid) are **soft** constraints. The engine tries to honour the preference, but if there's no other option the doctor may still be assigned.
+
+<Note>
+  Only **Approved** leave is applied. Pending or rejected requests have no effect on generation. Always clear your pending queue before generating a roster.
+</Note>
+
+## Senior-to-junior ratio
+
+For organisations on the advanced scheduling engine, each shift can require a defined ratio of senior to junior doctors — for example, _one senior for every three juniors_. This is a **hard** constraint.
+
+## Shift-specific staffing requirements
+
+Each shift template defines:
+
+- **Required doctors** — the exact headcount per occurrence.
+- **Min seniors required** — the minimum number of seniors per occurrence.
+
+Both are **hard** constraints. If you don't have enough doctors to meet these across the full period, generation will fail.
+
+## New doctor onboarding period
+
+If configured, doctors who joined within a defined number of days can be protected from specific shift types during their onboarding period. This is set at the roster level under **Other Configurations**.
+
+Use this to ease new joiners in gradually — for example, no night shifts in their first 30 days.
+
+## When generation fails
+
+<Warning>
+  If the engine cannot find a valid schedule that satisfies every hard constraint, the roster shows a **Failed** status. The reason will appear on the roster page.
+</Warning>
+
+Common fixes:
+
+- **Add more doctors** to the team so the engine has more options.
+- **Loosen a rule** — for example, raise max consecutive work days or lower the minimum rest days.
+- **Approve outstanding leave** before retrying so the engine has a complete picture.
+- **Shorten the period** if the date range was very long.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Create a roster" icon="wand-magic-sparkles" href="/rosters/creating-a-roster">
+    Apply these rules in the four-step wizard.
+  </Card>
+
+  <Card title="Roster and shift statuses" icon="signal" href="/rosters/statuses">
+    Reference for every status you'll see on a roster.
+  </Card>
+</CardGroup>

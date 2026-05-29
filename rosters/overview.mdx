@@ -1,0 +1,89 @@
+---
+title: "How rosters work in PlanMyRounds"
+description: "Understand what duty rosters are in PlanMyRounds and how the scheduling engine builds a fair, conflict-free plan for your team."
+icon: "circle-info"
+---
+
+A **roster** — also called a **Duty Plan** in PlanMyRounds — is the schedule that tells your team who is on which shift, on which day. Instead of building one by hand on a spreadsheet, PlanMyRounds uses a scheduling engine to generate a fair, rule-aware plan for you in under a minute.
+
+## What a roster covers
+
+<CardGroup cols={2}>
+  <Card title="A date range" icon="calendar-range">
+    A week, a month, or any custom range you choose.
+  </Card>
+
+  <Card title="Shifts and staffing" icon="layer-group">
+    The shift types to include and how many doctors each one needs per day.
+  </Card>
+
+  <Card title="A team of doctors" icon="user-group">
+    The group of doctors who are eligible to be assigned for this period.
+  </Card>
+
+  <Card title="Scheduling rules" icon="shield-halved">
+    The work, rest, and fairness rules the engine must respect.
+  </Card>
+</CardGroup>
+
+## The roster lifecycle
+
+<Steps>
+  <Step title="Create">
+    Open the [creation wizard](/rosters/creating-a-roster) and walk through dates, shifts, team, and rules.
+  </Step>
+  <Step title="Generate">
+    The engine runs and produces a **Draft** roster, usually within a minute.
+  </Step>
+  <Step title="Review and publish">
+    Check coverage and workload, then [publish](/rosters/publishing-a-roster) to make it visible to the team.
+  </Step>
+  <Step title="Adjust">
+    Handle real-world changes through [manual edits](/rosters/editing-a-published-roster) or [duty swaps](/swaps/overview).
+  </Step>
+</Steps>
+
+## How the scheduler thinks
+
+The engine looks for the best possible assignment of doctors to shifts. While generating, it respects:
+
+- **Approved leave** and shift-to-avoid preferences
+- **Maximum consecutive working days** and minimum rest days per week
+- **Minimum rest hours** between any two shifts
+- **Senior-to-junior ratios** per shift
+- Each **doctor's experience level** (senior or junior)
+- **Minimum monthly hours** per doctor for fairness
+
+For the full list of rules and how they interact, see [Roster constraints](/rosters/roster-constraints).
+
+<Note>
+  The scheduler only considers leave entries that are **Approved** before generation starts. Pending requests are not applied. Approve outstanding leave first so the engine plans around it.
+</Note>
+
+## Roster statuses
+
+| Status | What it means |
+| --- | --- |
+| **Creating** | The engine is currently building the schedule. Usually under a minute. |
+| **Draft** | Generation is complete and the roster is ready for review. Not yet visible to the team. |
+| **Published** | The roster is live and visible to all team members. A shareable link is available. |
+| **Archived** | The roster has been retired. Still viewable for reference. |
+| **Failed** | The engine could not produce a valid schedule. Adjust inputs and retry. |
+
+For the colour key and other statuses you'll come across, see [Roster and shift statuses](/rosters/statuses).
+
+## Where to find your rosters
+
+Select **Duty Plans** in the sidebar to see every roster in your organisation. Filter by status, department, or the admin who created them.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Create your first roster" icon="wand-magic-sparkles" href="/rosters/creating-a-roster">
+    Walk through the four-step creation wizard.
+  </Card>
+
+  <Card title="Understand the rules" icon="shield-halved" href="/rosters/roster-constraints">
+    Learn how work, rest, and fairness constraints shape the schedule.
+  </Card>
+</CardGroup>

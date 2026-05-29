@@ -1,0 +1,95 @@
+---
+title: "How leave management works in PlanMyRounds"
+description: "Understand how leave requests flow through PlanMyRounds — from a doctor submitting a request to it appearing on the roster."
+icon: "circle-info"
+---
+
+Leave management is where your team records when doctors are unavailable, so the scheduler can plan around them. Once a leave request is approved, the doctor is automatically taken out of duty assignments on those dates — no manual edits to the roster needed.
+
+## What you can record
+
+<CardGroup cols={2}>
+  <Card title="Leave requests" icon="plane-departure">
+    Dates a doctor cannot work — annual leave, sick leave, maternity leave, or any other category your organisation defines.
+  </Card>
+
+  <Card title="Shifts to avoid" icon="circle-minus">
+    Soft preferences — dates a doctor would rather not work. The scheduler tries to honour these, but they're not a hard block.
+  </Card>
+</CardGroup>
+
+## How a leave request moves through the system
+
+<Steps>
+  <Step title="Submit">
+    An admin or a doctor [submits a request](/leave/applying-for-leave) with the dates, leave type, and shift.
+  </Step>
+  <Step title="Review">
+    The request lands in **Leave Applications** with a **Pending** status, waiting for admin review.
+  </Step>
+  <Step title="Decide">
+    An admin [approves or rejects](/leave/approval-workflow) the request. Approved dates are immediately excluded from scheduling.
+  </Step>
+  <Step title="Adjust">
+    Plans change. Pending requests can be [cancelled](/leave/cancelling-leave); approved ones can be reversed by an admin.
+  </Step>
+</Steps>
+
+## Leave statuses
+
+Every leave entry sits in one of four statuses:
+
+| Status | What it means |
+| --- | --- |
+| **Pending** | Submitted and waiting for admin review. |
+| **Approved** | Accepted by an admin. The doctor is excluded from scheduling on this date. |
+| **Rejected** | Declined by an admin. The doctor stays available for scheduling. |
+| **Removed** | Cancelled by the doctor or an admin. Cannot be restored. |
+
+<Note>
+  A leave request only affects scheduling once it's **Approved**. Pending and rejected entries are ignored when a roster is generated.
+</Note>
+
+## Who can do what
+
+| Action | Doctor (linked account) | Admin |
+| --- | :-: | :-: |
+| View own leave history | ✓ | ✓ |
+| View all team leave | — | ✓ |
+| Submit own leave request | ✓ | ✓ |
+| Submit leave for another doctor | — | ✓ |
+| Approve or reject requests | — | ✓ |
+| Cancel a pending request | ✓ (own only) | ✓ (any) |
+| Create or edit leave types | — | ✓ |
+
+## Where to find leave features
+
+<CardGroup cols={2}>
+  <Card title="Leave Applications" icon="clipboard-list">
+    Admin view of every leave entry across the team. Filter, review, approve, or reject from here.
+  </Card>
+
+  <Card title="My Leaves" icon="user">
+    A doctor's personal view of their own leave history and upcoming requests.
+  </Card>
+
+  <Card title="Leave Calendar" icon="calendar-days" href="/leave/calendar">
+    A month-by-month calendar of everyone's leave, with filters by department, pod, doctor, and seniority.
+  </Card>
+
+  <Card title="Leave Types" icon="tags" href="/leave/leave-types">
+    The categories your organisation uses to classify time off — set up and managed by admins.
+  </Card>
+</CardGroup>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Set up your leave types" icon="tags" href="/leave/leave-types">
+    Define the categories your team will use — Annual Leave, Sick Leave, and more.
+  </Card>
+
+  <Card title="Submit a leave request" icon="plus" href="/leave/applying-for-leave">
+    Walk through how to add a leave entry as an admin or a doctor.
+  </Card>
+</CardGroup>

@@ -1,0 +1,94 @@
+---
+title: "Creating a roster"
+description: "Walk through the four-step wizard to generate a fair, rule-aware duty roster for your team."
+icon: "wand-magic-sparkles"
+---
+
+Creating a roster in PlanMyRounds is a guided, four-step process. You set the dates, the shifts, the team, and the rules — the engine does the rest.
+
+<Note>
+  Only admins can create rosters.
+</Note>
+
+## Before you begin
+
+A quick checklist before opening the wizard:
+
+- Shift templates for your department are set up.
+- All doctors who could be on duty are added to your team.
+- Any [leave requests](/leave/applying-for-leave) for this period have been [approved](/leave/approval-workflow). The engine only respects leave that is already **Approved** when generation starts.
+
+## Open the wizard
+
+Go to **Duty Plans** in the sidebar and select **Create New Plan**. The wizard walks you through four steps.
+
+## Step 1 — Period and details
+
+<Steps>
+  <Step title="Set the dates">
+    Choose a **Start Date** and **End Date** for the roster. Use the **Next Week** or **Next Month** quick buttons to save time.
+  </Step>
+  <Step title="Name it (optional)">
+    Enter a custom roster name so it's easy to find later — for example, _Cardiology — June 2026_.
+  </Step>
+</Steps>
+
+## Step 2 — Shift configuration
+
+Choose which shifts to include and how many doctors each shift needs per day.
+
+You can either:
+
+- **Apply one shift pattern to every day of the week** — fastest, good for stable rotations.
+- **Use a different pattern for different days** — useful if weekends or specific weekdays need different cover.
+
+## Step 3 — Team selection
+
+Pick the doctors who should be part of this roster. Filter by **department** or **pod** to quickly find the right group.
+
+As you add doctors, PlanMyRounds runs a live **coverage check**. If you don't have enough doctors to cover all the shifts across the full period, a warning appears.
+
+<Tip>
+  Include a few extra doctors as a buffer. It gives the engine room to balance workload fairly and absorb unexpected absences.
+</Tip>
+
+## Step 4 — Scheduling rules
+
+Set the rules that govern how the engine assigns duties:
+
+| Rule | What it does |
+| --- | --- |
+| **Max consecutive work days** | The longest unbroken run of working days allowed. |
+| **Min rest days per week** | Guaranteed days off per week. |
+| **Prefer same shift type per week** | When on, tries to keep each doctor on the same shift type within a week. When off, balances day and night shifts equally. |
+| **Allow back-to-back duties** | If enabled, a doctor can work two consecutive shifts (for example, a night then a day). Off by default. |
+| **Minimum rest hours between shifts** | Always enforced, regardless of other settings. |
+| **Senior-to-junior ratio** | The required ratio of senior to junior doctors per shift (advanced scheduling modes). |
+
+For a deeper look at how each rule is applied, see [Roster constraints](/rosters/roster-constraints).
+
+## Generate the roster
+
+When you've finished step 4, select **Generate**. The engine runs in the background — you'll usually have a draft within a minute. Once it's done, you're taken straight to the roster detail page.
+
+## If generation fails
+
+If the engine cannot find a valid schedule that satisfies every rule, the roster shows a **Failed** status with the reason. Common causes:
+
+- **Not enough doctors** to cover the required headcount.
+- **Rules are too tight** — for example, max consecutive days set too low.
+- **Too much approved leave** in the period, leaving no one available on certain days.
+
+Adjust the inputs (add more doctors, loosen a rule, or shorten the period) and try again.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Review and publish" icon="paper-plane" href="/rosters/publishing-a-roster">
+    Check coverage and share the roster with your team.
+  </Card>
+
+  <Card title="Make manual edits" icon="pen-to-square" href="/rosters/editing-a-published-roster">
+    Adjust assignments before or after publishing.
+  </Card>
+</CardGroup>

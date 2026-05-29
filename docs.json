@@ -16,17 +16,49 @@
       "index",
       "quickstart",
       {
+        "group": "Rosters",
+        "icon": "calendar-check",
+        "pages": [
+          "rosters/overview",
+          "rosters/creating-a-roster",
+          "rosters/publishing-a-roster",
+          "rosters/editing-a-published-roster",
+          "rosters/roster-constraints",
+          "rosters/statuses"
+        ]
+      },
+      {
         "group": "Shifts",
         "icon": "calendar-clock",
         "pages": [
           "shifts/overview",
-          "shifts/creating-shifts",
-          "shifts/assigning-staff",
-          "shifts/shift-templates",
-          "shifts/swaps-and-cover",
-          "shifts/publishing-and-notifications"
+          "shifts/viewing-shifts",
+          "shifts/creating-shifts"
         ]
-      }
+      },
+      {
+        "group": "Swaps",
+        "icon": "arrows-rotate",
+        "pages": [
+          "swaps/overview",
+          "swaps/requesting-a-swap",
+          "swaps/approving-a-swap",
+          "swaps/viewing-a-swap"
+        ]
+      },
+      {
+        "group": "Leave",
+        "icon": "plane-departure",
+        "pages": [
+          "leave/overview",
+          "leave/leave-types",
+          "leave/applying-for-leave",
+          "leave/approval-workflow",
+          "leave/cancelling-leave",
+          "leave/calendar"
+        ]
+      },
+      "scheduling-engine"
     ]
   },
   "logo": {
@@ -69,5 +101,35 @@
       "light": "#F7F6FF",
       "dark": "#0D0F1C"
     }
+  },
+  "integrations": {
+    "ga4": {
+      "measurementId": "G-NQKWPESGYM"
+    }
+  },
+  "redirects": [
+    {
+      "source": "/shifts/assigning-staff",
+      "destination": "/rosters/creating-a-roster",
+      "permanent": true
+    },
+    {
+      "source": "/shifts/swaps-and-cover",
+      "destination": "/swaps/overview",
+      "permanent": true
+    },
+    {
+      "source": "/shifts/publishing-and-notifications",
+      "destination": "/rosters/publishing-a-roster",
+      "permanent": true
+    },
+    {
+      "source": "/shifts/shift-templates",
+      "destination": "/shifts/viewing-shifts",
+      "permanent": true
+    }
+  ],
+  "appearance": {
+    "default": "light"
   }
 }

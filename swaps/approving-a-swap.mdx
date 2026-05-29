@@ -1,0 +1,55 @@
+---
+title: "How swaps are confirmed"
+description: "Duty swaps in PlanMyRounds are auto-approved — here's what the scheduling engine checks at the moment of confirmation, and how both parties are notified."
+icon: "circle-check"
+---
+
+Swaps in PlanMyRounds are **auto-approved**. There's no admin sitting in the middle, and no waiting for a decision — the moment a swap is confirmed, the roster updates and both doctors are notified.
+
+That's possible because the scheduling engine runs the safety checks for you, every single time.
+
+## What gets checked at confirmation
+
+When a doctor selects **Confirm** on a swap, PlanMyRounds re-validates that:
+
+- The proposed change does **not break any scheduling rule** — rest hours, back-to-back limits, max consecutive days, and so on. See [Roster constraints](/rosters/roster-constraints) for the full list.
+- The roster has **not been modified by someone else** since the swap options were loaded.
+
+If both checks pass, the swap is applied and the roster updates instantly.
+
+## Why re-validation matters
+
+The options shown in the swap panel are calculated at the moment you open it. A lot can change in the next few seconds — an admin might edit the roster, another swap might go through, or new leave might be approved.
+
+Re-validating **at the point of confirmation** — not just when options are loaded — means stale or conflicting choices are caught before they're applied.
+
+<Warning>
+  If a conflict is found at confirmation time, you'll see a message asking you to refresh and try again. The swap is **not** applied.
+</Warning>
+
+## How both parties are notified
+
+Once a swap is confirmed, both the requesting doctor and the colleague receive:
+
+- A **push notification** on the PlanMyRounds mobile app.
+- An **email** with the details of the change — including the old and new shift assignments — if their email address is on file.
+
+## If a swap needs to be undone
+
+There is **no automatic swap reversal**. If a swap was a mistake or circumstances change again, an admin can step in and manually reassign the original doctors using the [Edit Roster](/rosters/editing-a-published-roster) view.
+
+<Note>
+  Admins can always reassign shifts through the Edit Roster view, regardless of how the current assignment came about — generated, edited, or swapped.
+</Note>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Swapping shifts" icon="paper-plane" href="/swaps/requesting-a-swap">
+    The doctor's-eye view of starting a swap.
+  </Card>
+
+  <Card title="Editing a published roster" icon="pen-to-square" href="/rosters/editing-a-published-roster">
+    How admins manually reverse a swap or step in for emergencies.
+  </Card>
+</CardGroup>
