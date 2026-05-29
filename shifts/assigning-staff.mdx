@@ -1,0 +1,87 @@
+---
+title: "Assigning staff"
+description: "Allocate shifts to staff, handle conflicts, and fill unassigned gaps."
+icon: "user-plus"
+---
+
+Once shifts exist on a roster, you assign them to staff. A shift can be assigned, reassigned, or left **unassigned** (a visible gap).
+
+## Assign a single shift
+
+1. Click the shift in the roster grid.
+2. In the side panel, choose an assignee from the dropdown.
+3. PlanMyRounds shows only **eligible** staff — i.e. users with the required role and no conflicts.
+4. Click **Save**.
+
+<Tip>
+  Hold <kbd>Shift</kbd> while dragging a shift between cells to **copy** rather than move it.
+</Tip>
+
+## Bulk assign
+
+For filling many gaps at once:
+
+<Steps>
+  <Step title="Filter">
+    Use the roster filter to show **Unassigned only**.
+  </Step>
+  <Step title="Select">
+    Multi-select shifts (click \+ shift-click, or **Select all visible**).
+  </Step>
+  <Step title="Auto-assign or pick">
+    Choose **Auto-assign** to let PlanMyRounds distribute fairly, or pick a single user to take all selected shifts.
+  </Step>
+</Steps>
+
+## Auto-assign rules
+
+Auto-assign respects, in priority order:
+
+1. Role eligibility
+2. Approved leave and existing shifts
+3. Minimum rest hours
+4. Contracted hours / FTE balance
+5. Fair distribution of antisocial shifts (nights, weekends)
+
+<Note>
+  Auto-assign is a _suggestion_ — you can review and adjust before publishing.
+</Note>
+
+## Handling conflicts
+
+When a conflict is detected, the shift is highlighted in **amber** (warning) or **red** (block):
+
+| Colour | Meaning | Action |
+| --- | --- | --- |
+| 🟡 Amber | Soft warning (e.g. close to rest limit) | Review; can save with reason |
+| 🔴 Red | Hard conflict (overlap, leave, role mismatch) | Must resolve or override |
+
+Click the badge on the shift to see the specific reason.
+
+## Reassign or unassign
+
+- **Reassign**: open the shift and change the assignee. The original assignee is notified if the roster is published.
+- **Unassign**: open the shift and clear the assignee. The shift becomes a visible gap.
+
+## Tracking workload
+
+The **Workload** view (top of the roster) shows per-person totals for the period:
+
+- Total hours
+- Day / night / weekend split
+- Contracted vs. assigned hours
+- Leave taken
+
+Use this to balance the roster before publishing.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Swaps & cover" icon="arrows-rotate" href="/shifts/swaps-and-cover">
+    Let staff trade shifts after publication.
+  </Card>
+
+  <Card title="Publish & notify" icon="bell" href="/shifts/publishing-and-notifications">
+    Push the roster live.
+  </Card>
+</CardGroup>

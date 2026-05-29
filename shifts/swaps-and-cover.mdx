@@ -1,0 +1,79 @@
+---
+title: "Swaps and cover"
+description: "How staff trade shifts or request cover after a roster is published."
+icon: "arrows-rotate"
+---
+
+After a roster is published, changes happen through three flows: **swaps**, **cover requests**, and **admin reassignment**. All three keep a full audit trail.
+
+## Swaps
+
+A swap is when two staff members exchange shifts directly.
+
+<Steps>
+  <Step title="Initiate">
+    The requester opens one of their shifts and taps **Request swap**.
+  </Step>
+  <Step title="Pick a counterpart">
+    They choose the colleague's shift to swap with. Only eligible shifts are listed (matching role, no conflicts).
+  </Step>
+  <Step title="Counterparty approves">
+    The other person receives a notification and accepts or declines.
+  </Step>
+  <Step title="Admin signs off">
+    If swap approval is required (set in Org Settings), an admin gives final sign-off.
+  </Step>
+  <Step title="Shifts switch">
+    Both rosters update and both users are notified.
+  </Step>
+</Steps>
+
+## Cover requests
+
+A cover request offers a single shift to colleagues — useful when no direct swap is needed.
+
+1. Staff member opens a shift → **Request cover**.
+2. Adds an optional reason and chooses who can see it (whole team, role-matched only, etc.).
+3. Eligible colleagues are notified and can **Accept**.
+4. First accepter takes the shift (or admin chooses if multiple).
+5. The original assignee is released from the shift.
+
+<Note>
+  Cover does **not** automatically log leave. If the requester needs the time off recorded, they should also submit a [leave request](/leave-management/overview).
+</Note>
+
+## Admin reassignment
+
+Admins can reassign any shift directly without a swap or cover flow — used for sickness, emergencies, or corrections.
+
+- Open the shift → change assignee → add a reason.
+- Both the previous and new assignee are notified.
+- The change is recorded in the shift's history.
+
+## Approval rules
+
+Configure in **Organisation Settings → Shifts**:
+
+| Rule | Options |
+| --- | --- |
+| Swap approval | Auto-approve · Admin approval required |
+| Cover approval | First-come · Admin chooses · Manager assigns |
+| Notice period | e.g. no swaps within 24h of shift start |
+| Cross-role swaps | Allowed · Blocked |
+
+## Audit trail
+
+Every shift has a **History** tab showing:
+
+- Who created it
+- Each reassignment, with reason and timestamp
+- Swap / cover requests, including declines
+- Admin overrides
+
+This is your evidence trail for compliance and dispute resolution.
+
+## Next steps
+
+<Card title="Publishing & notifications" icon="bell" href="/shifts/publishing-and-notifications">
+  Understand what triggers staff notifications.
+</Card>

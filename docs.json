@@ -9,7 +9,22 @@
   },
   "favicon": "/favicon.svg",
   "navigation": {
-    "pages": ["index", "quickstart"],
+    "pages": [
+      "index",
+      "quickstart",
+      {
+        "group": "Shifts",
+        "icon": "calendar-clock",
+        "pages": [
+          "shifts/overview",
+          "shifts/creating-shifts",
+          "shifts/assigning-staff",
+          "shifts/shift-templates",
+          "shifts/swaps-and-cover",
+          "shifts/publishing-and-notifications"
+        ]
+      }
+    ],
     "global": {
       "anchors": [
         {

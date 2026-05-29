@@ -1,0 +1,80 @@
+---
+title: "Shifts overview"
+description: "Understand how shifts work in PlanMyRounds and how they connect to rosters, leave, and notifications."
+icon: "circle-info"
+---
+
+Shifts are the fundamental building block of a roster in PlanMyRounds. A shift represents a defined block of clinical work — for example, a _Day SHO_, _Night Reg_, or _Weekend On-call_ — with a start time, end time, role, and location.
+
+## Where shifts fit
+
+<CardGroup cols={2}>
+  <Card title="Shift Templates" icon="layer-group">
+    Reusable definitions (name, hours, role, breaks) used to populate rosters quickly.
+  </Card>
+
+  <Card title="Rosters / Duty Plans" icon="calendar-days">
+    A schedule made up of many assigned shifts across staff and dates.
+  </Card>
+
+  <Card title="Leave Management" icon="plane-departure">
+    Leave automatically blocks shift assignment and surfaces gaps to fill.
+  </Card>
+
+  <Card title="Swaps & Cover" icon="arrows-rotate">
+    Staff can request swaps or offer cover for published shifts.
+  </Card>
+</CardGroup>
+
+## Shift lifecycle
+
+<Steps>
+  <Step title="Define">
+    Create a [shift template](/shifts/shift-templates) with start/end times, role, location, and pay/banding rules.
+  </Step>
+  <Step title="Assign">
+    Drop the shift onto a person and date in the [roster builder](/shifts/assigning-staff).
+  </Step>
+  <Step title="Publish">
+    [Publish the roster](/shifts/publishing-and-notifications) — staff are notified and shifts become visible in their schedule.
+  </Step>
+  <Step title="Adjust">
+    Handle changes via [swaps, cover, or manual edits](/shifts/swaps-and-cover) — the audit trail records every change.
+  </Step>
+</Steps>
+
+## Key concepts
+
+| Concept | Description |
+| --- | --- |
+| **Shift** | A single block of work assigned to one user on one date. |
+| **Shift template** | A reusable pattern used to create shifts consistently. |
+| **Unassigned shift** | A shift that exists on the roster but has no owner — visible as a gap. |
+| **Published vs. draft** | Draft shifts are only visible to admins; published shifts are visible to staff. |
+| **Conflict** | When a shift overlaps another shift, approved leave, or rest-rule breach. |
+
+<Tip>
+  Always create shifts from templates where possible — it keeps rules (rest periods, banding, role permissions) consistent across your rota.
+</Tip>
+
+## Permissions
+
+| Action | Staff | Roster Admin | Org Admin |
+| --- | :-: | :-: | :-: |
+| View own shifts | ✓ | ✓ | ✓ |
+| View team shifts | — | ✓ | ✓ |
+| Create / edit shifts | — | ✓ | ✓ |
+| Publish roster | — | ✓ | ✓ |
+| Manage templates | — | — | ✓ |
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Create a shift" icon="plus" href="/shifts/creating-shifts">
+    Add a one-off or recurring shift to a roster.
+  </Card>
+
+  <Card title="Build shift templates" icon="layer-group" href="/shifts/shift-templates">
+    Define reusable shifts your team uses every week.
+  </Card>
+</CardGroup>

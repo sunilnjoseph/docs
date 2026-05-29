@@ -1,0 +1,79 @@
+---
+title: "Shift templates"
+description: "Build reusable shift definitions to roster faster and more consistently."
+icon: "layer-group"
+---
+
+A **shift template** defines a recurring shift type once, so you can drop it onto rosters without re-entering the same details every week.
+
+## Anatomy of a template
+
+| Field | Description | Example |
+| --- | --- | --- |
+| **Code** | Short identifier shown in compact roster views | `D-SHO` |
+| **Name** | Human-readable label | Day SHO |
+| **Start / end time** | Default hours | 08:00 – 20:00 |
+| **Role** | Required role to be assigned | SHO |
+| **Location** | Default ward/site | General Medicine |
+| **Break** | Paid/unpaid break duration | 30 min unpaid |
+| **Colour** | For at-a-glance recognition | 🟦 Blue |
+| **Banding / pay rule** | Optional link to a pay rule | Band 1A |
+
+## Create a template
+
+<Steps>
+  <Step title="Open settings">
+    Go to **Organisation Settings → Shift templates**.
+  </Step>
+  <Step title="Click New template">
+    Fill in code, name, times, role, location, and break.
+  </Step>
+  <Step title="Pick a colour">
+    Choose a distinct colour so the shift stands out in the roster grid.
+  </Step>
+  <Step title="Save">
+    The template is immediately available in every roster.
+  </Step>
+</Steps>
+
+## Edit a template
+
+When you edit a template, you'll be asked how to apply the change:
+
+<AccordionGroup>
+  <Accordion title="Only future shifts">
+    Existing shifts created from this template are unchanged. Recommended for most edits.
+  </Accordion>
+
+  <Accordion title="All unpublished shifts">
+    Updates draft shifts on any roster not yet published.
+  </Accordion>
+
+  <Accordion title="All shifts including published">
+    Updates every linked shift and notifies affected staff. Use sparingly.
+  </Accordion>
+</AccordionGroup>
+
+## Archive a template
+
+Templates can't be deleted if they're linked to historical shifts — archive instead.
+
+- Archived templates stop appearing in the roster builder.
+- Historical reports still show shifts that were created from them.
+- You can un-archive at any time.
+
+## Best practices
+
+<Tip>
+  Keep templates granular but not excessive. A good rule: one template per (role × time-of-day × location).
+</Tip>
+
+- Use **codes** consistently — they appear in CSV exports and integrations.
+- Use **colour** to group families (e.g. all night shifts in dark blue).
+- Review templates quarterly to retire ones no longer used.
+
+## Next steps
+
+<Card title="Create shifts from templates" icon="plus" href="/shifts/creating-shifts">
+  Drop templates onto a roster.
+</Card>

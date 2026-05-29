@@ -1,0 +1,95 @@
+---
+title: "Creating shifts"
+description: "Add one-off or recurring shifts to a roster."
+icon: "plus"
+---
+
+There are three ways to create a shift in PlanMyRounds: from a **template**, from **scratch**, or by **bulk import**.
+
+## Create from a template
+
+The fastest way — recommended for any shift you run regularly.
+
+<Steps>
+  <Step title="Open the roster">
+    Go to **Rosters → \[your roster\] → Edit**.
+  </Step>
+  <Step title="Pick a template">
+    From the right-hand panel, drag a template (e.g. _Day SHO 08:00–20:00_) onto a person/date cell.
+  </Step>
+  <Step title="Confirm">
+    The shift inherits the template's times, role, and breaks. Edit any field inline if needed.
+  </Step>
+</Steps>
+
+## Create from scratch
+
+Use this for one-off cover, ad-hoc shifts, or training days.
+
+1. In the roster, click an empty cell or hit **\+ Add shift**.
+2. Fill in:
+   - **Start / end time** (crossing midnight is supported)
+   - **Role** (e.g. SHO, Registrar, Consultant)
+   - **Location** (ward, site, department)
+   - **Break** (paid / unpaid)
+   - **Notes** (visible to the assignee)
+3. Click **Save**.
+
+<Note>
+  Shifts created from scratch are not linked to a template — future template edits won't propagate to them.
+</Note>
+
+## Create recurring shifts
+
+For rotating patterns (e.g. _1 in 4 weekends_):
+
+<Steps>
+  <Step title="Open the shift editor">
+    Click **\+ Add shift** and toggle **Recurring**.
+  </Step>
+  <Step title="Set the pattern">
+    Choose frequency (daily, weekly, custom n-week cycle) and the start/end of the recurrence.
+  </Step>
+  <Step title="Choose handling for conflicts">
+    Decide whether to **skip** dates that overlap leave/existing shifts, or **flag** them for review.
+  </Step>
+  <Step title="Generate">
+    PlanMyRounds creates one shift per occurrence. You can edit or delete individual instances later.
+  </Step>
+</Steps>
+
+## Bulk import
+
+For moving an existing rota in from a spreadsheet:
+
+1. Go to **Rosters → Import**.
+2. Download the CSV template.
+3. Fill in `date`, `start_time`, `end_time`, `role`, `assignee_email`, `location`, `template_code` (optional).
+4. Upload — PlanMyRounds will validate rows and show a preview before committing.
+
+<Warning>
+  Imports respect leave and rest rules. Conflicting rows are listed for manual resolution; they are **not** silently dropped.
+</Warning>
+
+## Validation rules
+
+When you save a shift, PlanMyRounds checks:
+
+- The assignee has no overlapping shift on that date.
+- The assignee has no approved leave covering the shift.
+- Minimum rest between shifts (configured in **Organisation Settings**) is respected.
+- The assignee holds the role required by the shift.
+
+Failures appear inline and must be resolved or overridden (with reason) before saving.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Assign staff" icon="user-plus" href="/shifts/assigning-staff">
+    Allocate or reassign created shifts.
+  </Card>
+
+  <Card title="Shift templates" icon="layer-group" href="/shifts/shift-templates">
+    Build the templates you'll create shifts from.
+  </Card>
+</CardGroup>

@@ -1,0 +1,86 @@
+---
+title: "Publishing and notifications"
+description: "Push rosters live and control how and when staff are notified of changes."
+icon: "bell"
+---
+
+A roster lives in **draft** until you **publish** it. Only published shifts are visible to staff and counted in rotas, exports, and integrations.
+
+## Publish a roster
+
+<Steps>
+  <Step title="Open the roster">
+    Go to **Rosters → \[your roster\]**.
+  </Step>
+  <Step title="Run the pre-publish check">
+    Click **Review** to see:
+
+    - Unassigned shifts
+    - Conflicts (rest, leave, role)
+    - Under/over-contracted staff
+  </Step>
+  <Step title="Resolve or acknowledge">
+    Fix what you can; acknowledge anything you're knowingly publishing with gaps.
+  </Step>
+  <Step title="Click Publish">
+    Choose the date range and whether to notify staff immediately or on a schedule.
+  </Step>
+</Steps>
+
+## What staff receive
+
+On publish, each affected user gets a single consolidated notification — not one per shift.
+
+| Channel | When | Customisable? |
+| --- | --- | --- |
+| **In-app** | Always | No |
+| **Email** | On publish, swaps, cover, changes | Yes, per-user |
+| **Push (mobile)** | On publish, day-before reminder | Yes, per-user |
+| **SMS** | Optional, for urgent changes | Yes, org-level |
+
+Users control their own channels under **Profile → Notifications**.
+
+## Publishing changes after the fact
+
+If you edit a published roster, the change is published immediately. Affected staff get a **change notification** showing exactly what changed:
+
+- New shift added
+- Shift removed
+- Shift edited (with before/after)
+- Reassignment
+
+<Warning>
+  Changes within the **lockout window** (default: 24h before the shift starts) require a reason and trigger an SMS to affected staff.
+</Warning>
+
+## Unpublishing
+
+You cannot fully unpublish a roster, but you can:
+
+- **Revert individual shifts** to draft — they disappear from staff views and the change is logged.
+- **Cancel a shift** — leaves the slot empty but keeps the history.
+
+## Notification settings
+
+Org-level settings (in **Organisation Settings → Notifications**):
+
+- Quiet hours (e.g. no push notifications 22:00–07:00)
+- Default channels for new users
+- Reminders (day-before, hour-before)
+- Digest mode (one email per day vs. real-time)
+
+## Best practices
+
+<Tip>
+  Publish on a predictable cadence (e.g. every Friday for 4 weeks ahead) — staff trust the rota more when it appears at a known time.
+</Tip>
+
+- Run **Review** before every publish — it surfaces issues you'd otherwise hear about from staff.
+- Use the **lockout window** to prevent last-minute silent edits.
+- Encourage staff to enable push notifications for swap/cover offers.
+
+## You're done
+
+<Card title="Back to Shifts overview" icon="arrow-left" href="/shifts/overview">
+  Return to the module overview.
+</Card>
