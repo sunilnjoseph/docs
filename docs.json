@@ -1,13 +1,16 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mintlify Starter Kit",
+  "name": "PlanMyRounds Docs",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#5B8DF5",
+    "light": "#DBADFF",
+    "dark": "#2E65D4"
   },
-  "favicon": "/favicon.svg",
+  "favicon": {
+    "light": "/images/favicon.svg",
+    "dark": "/images/favicon.svg"
+  },
   "navigation": {
     "pages": [
       "index",
@@ -41,14 +44,14 @@
     }
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/images/pmr.svg",
+    "dark": "/images/pmr.svg"
   },
   "navbar": {
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:support@planmyrounds.com"
       }
     ],
     "primary": {
@@ -71,9 +74,14 @@
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "website": "https://planmyrounds.com"
+    }
+  },
+  "description": "PlanMyRounds is physician scheduling software for hospitalist groups — automate fair shift rosters, manage leaves, swaps, and on-call rotations without spreadsheets.",
+  "background": {
+    "color": {
+      "light": "#F7F6FF",
+      "dark": "#0D0F1C"
     }
   }
 }
