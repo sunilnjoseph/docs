@@ -51,8 +51,10 @@
         "icon": "user-group",
         "pages": [
           "team/overview",
+          "team/staff-profiles-and-user-accounts",
           "team/roles-and-permissions",
           "team/inviting-a-member",
+          "team/link-or-unlink-accounts",
           "team/doctor-profiles",
           "team/removing-a-user"
         ]

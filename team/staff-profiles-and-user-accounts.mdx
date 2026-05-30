@@ -1,0 +1,54 @@
+---
+title: "Staff profiles and user accounts"
+icon: "user-doctor"
+---
+
+PlanMyRounds keeps two things separate: **doctor profiles** and **member accounts**. They serve different purposes, and understanding the distinction makes the rest of the team section click.
+
+## Doctor profiles
+
+A doctor profile is a scheduling record. It holds everything the \[scheduling engine\](/scheduling-engine) needs to build a fair roster — department, seniority, hour limits, excluded shifts, and leave history.
+
+Profiles exist whether or not the doctor has ever signed into PlanMyRounds. An admin can create a doctor profile, run it through roster generation, and manage leave on that person's behalf — all without the doctor having an account.
+
+## Member accounts
+
+A member account is how someone signs into PlanMyRounds. Every person who logs in — whether an admin managing rosters or a doctor checking their schedule — has one.
+
+On its own, a member account carries no scheduling data. An admin-only user, for example, may never appear on a roster at all.
+
+## What linking does
+
+When a member account is linked to a doctor profile, that person gets a personalised view of PlanMyRounds. After signing in, they can see:
+
+- Their upcoming and past duty assignments
+
+- Their leave requests and current approval status
+
+- Their excluded shifts and scheduling preferences
+
+Without a link, a member can still sign in — but they only see the organisation view, with no personal scheduling data filtered for them.
+
+<Card type="info">
+   Linking is optional. Many organisations keep doctor profiles as admin-managed records and never link them to member accounts. Roster generation and leave management work exactly the same either way.
+</Card>
+
+## Admins don't need a doctor profile
+
+Admins manage the organisation — creating rosters, approving leave, inviting team members. They don't need a doctor profile unless they're also scheduled for duties. An admin without a linked doctor profile is completely normal.
+
+## One profile, one account
+
+Each doctor profile can be linked to at most one member account, and each member account can be linked to at most one doctor profile within an organisation.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Link or unlink accounts" icon="user-plus" href="/team/linking-accounts">
+        Connect a doctor profile to a member account so they can see their own shifts and leave.
+  </Card>
+
+  <Card title="Invite a team member" icon="user-minus" href="/team/inviting-a-member">
+        A member account must exist before you can link it. Invite them here first.
+  </Card>
+</CardGroup>
